@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPTCG Decklist Converter</title>
+    <title>OPTCG Decklist Formatter</title>
+    <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        textarea { width: 100%; height: 150px; margin-bottom: 10px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-        pre { background: #f4f4f4; padding: 10px; text-align: left; white-space: pre-wrap; }
-    </style>
-    <style>
-        #output {
-            width: 100%;
-            height: auto;
-            max-height: 200px; /* Prevents it from being too large */
-            overflow: auto; /* Enables scrolling if needed */
-            white-space: pre-wrap; /* Ensures text wraps properly */
-            word-wrap: break-word; /* Breaks long words */
-            border: 1px solid #ccc;
-            padding: 8px;
-            background: #f9f9f9;
-        }
-    </style>
-    
 </head>
 <body>
-    <h1>OPTCG Decklist Converter</h1>
-    <textarea id="deckInput" rows="10" cols="40" placeholder="Paste deck list here..."></textarea>
-    <div>
-        <button onclick="convertDeck()">Convert</button>
-        
-        <!-- Add the "Copy to Clipboard" button here -->
-        <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Copy to Clipboard</button>
-    </div>
+    <header>
+        <h1>OPTCG Decklist Formatter</h1>
+    </header>
     
-    <pre id="output"></pre>
+    <div class="container">
+        <section class="instructions">
+            <h2>How to Use</h2>
+            <p>Paste your OPTCG deck list in the box below and click <b>Convert</b> to transform it into an array format.</p>
+            <p>After conversion, click <b>Copy to Clipboard</b> to copy the output.</p>
+        </section>
+        
+        <section class="formats">
+            <h3>Accepted Formats</h3>
+            <div class="format-box">
+                <span>✅ <code>[multiplier]x[code] | 2x0P01-001 ...</code></span>
+                <span>✅ <code>[multiplier]x[code] [card name] | 2x0P01-001 Zoro ...</code></span>
+                <span>✅ <code>[multiplier] [code] [card name] | 2 0P01-001 Zoro ...</code></span>
+                <span>✅ <code>[multiplier] [code] | 2 0P01-001 ...</code></span>
+            </div>
+        </section>
+        
+        <section class="deck-input">
+            <div class="input-container">
+                <textarea id="deckInput" placeholder="Paste deck list here..."></textarea>
+                <div class="button-group">
+                    <button onclick="convertDeck()">Convert</button>
+                    <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Copy to Clipboard</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="output">
+            <div class="output-container">
+                <pre id="output"></pre>
+            </div>
+        </section>
+    </div>
+</body>
 </html>
-
