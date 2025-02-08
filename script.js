@@ -45,11 +45,29 @@ function convertToExportFormat(deckList) {
 }
 
 function convertDeck() {
-    document.getElementById("output").textContent = "Processing...";
-    setTimeout(() => {
-        const input = document.getElementById("deckInput").value;
-        const output = convertToExportFormat(input);
-        document.getElementById("output").textContent = JSON.stringify(output, null, 2);
-    }, 100);
+    const deckInput = document.getElementById("deckInput").value;
+    const outputElement = document.getElementById("output");
+    const copyButton = document.getElementById("copyButton");
+
+    const exportFormat = convertToExportFormat(deckInput);
+
+    if (exportFormat.length > 1) {
+        outputElement.innerText = JSON.stringify(exportFormat, null, 2); // Keeps array formatting
+        copyButton.style.display = "inline-block"; // Show button
+    } else {
+        outputElement.innerText = "Invalid deck list!";
+        copyButton.style.display = "none"; // Hide button
+    }
 }
 
+
+function copyToClipboard() {
+    const outputElement = document.getElementById("output");
+    const textToCopy = outputElement.innerText; // Get the formatted text
+    
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Exported deck copied to clipboard!");
+    }).catch(err => {
+        console.error("Failed to copy:", err);
+    });
+}

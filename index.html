@@ -11,12 +11,31 @@
         button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
         pre { background: #f4f4f4; padding: 10px; text-align: left; white-space: pre-wrap; }
     </style>
+    <style>
+        #output {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Prevents it from being too large */
+            overflow: auto; /* Enables scrolling if needed */
+            white-space: pre-wrap; /* Ensures text wraps properly */
+            word-wrap: break-word; /* Breaks long words */
+            border: 1px solid #ccc;
+            padding: 8px;
+            background: #f9f9f9;
+        }
+    </style>
+    
 </head>
 <body>
     <h1>OPTCG Decklist Converter</h1>
     <textarea id="deckInput" rows="10" cols="40" placeholder="Paste deck list here..."></textarea>
-    <button onclick="convertDeck()">Convert</button>
+    <div>
+        <button onclick="convertDeck()">Convert</button>
+        
+        <!-- Add the "Copy to Clipboard" button here -->
+        <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Copy to Clipboard</button>
+    </div>
+    
     <pre id="output"></pre>
-</body>
 </html>
 
